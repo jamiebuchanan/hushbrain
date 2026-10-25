@@ -1,0 +1,33 @@
+# hushbrain settings. Copy to hushbrain.toml (git-ignored) or point HUSHBRAIN_CONFIG at it.
+# Every key can also be set as an environment variable: HUSHBRAIN_ plus the key in capitals,
+# for example HUSHBRAIN_DSN. The environment wins over this file. Unknown keys are an error.
+
+dsn = "postgresql://hushbrain:change-me@127.0.0.1:54329/hushbrain"
+
+vault_dir = "~/hushbrain-vault"     # the folder that contains nodes/
+nodes_subdir = "nodes"
+
+policy_path = "~/.config/hushbrain/policy.toml"
+
+# When true, include_sensitive is ignored for every caller and the server only ever returns
+# the default-visible tiers. Use it for any session or agent that should never see private
+# notes, however it is prompted.
+lock_sensitive = false
+
+# "ollama" for real use; "hash" is a deterministic stand-in for tests and demos.
+embedder = "ollama"
+ollama_url = "http://localhost:11434"
+embed_model = "nomic-embed-text:v1.5"
+embed_dim = 768                      # fixed when the store is created; at most 2000
+
+default_search_limit = 8
+max_search_limit = 20
+summary_chars = 200
+changed_since_limit = 50
+
+# Indexer
+log_file = "~/.local/state/hushbrain/indexer.log"
+log_level = "INFO"
+debounce_ms = 400
+reconcile_sec = 15                   # 0 turns the safety-net sweep off
+initial_scan = true

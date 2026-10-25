@@ -1,0 +1,14 @@
+# Example only. Save as ~/.config/systemd/user/hushbrain-indexer.service, replace /path/to, then:
+#   systemctl --user daemon-reload && systemctl --user enable --now hushbrain-indexer
+[Unit]
+Description=hushbrain indexer
+After=network-online.target
+
+[Service]
+Environment=HUSHBRAIN_CONFIG=/path/to/hushbrain.toml
+ExecStart=/path/to/uv run --quiet --directory /path/to/hushbrain hushbrain index --watch
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=default.target

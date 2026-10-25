@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "hushbrain-locked": {
+      "command": "uv",
+      "args": ["run", "--quiet", "--directory", "/path/to/hushbrain", "hushbrain", "serve"],
+      "env": {
+        "HUSHBRAIN_CONFIG": "/path/to/hushbrain.toml",
+        "HUSHBRAIN_LOCK_SENSITIVE": "1"
+      }
+    }
+  }
+}

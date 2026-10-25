@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Example only. Replace every /path/to and the label, then:
+     launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.example.hushbrain-indexer.plist -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.example.hushbrain-indexer</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/path/to/uv</string>
+    <string>run</string><string>--quiet</string>
+    <string>--directory</string><string>/path/to/hushbrain</string>
+    <string>hushbrain</string><string>index</string><string>--watch</string>
+  </array>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HUSHBRAIN_CONFIG</key><string>/path/to/hushbrain.toml</string>
+  </dict>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><dict><key>SuccessfulExit</key><false/></dict>
+  <key>ThrottleInterval</key><integer>30</integer>
+</dict>
+</plist>

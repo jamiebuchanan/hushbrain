@@ -1,0 +1,24 @@
+# Postgres with pgvector, bound to localhost only.
+#   cp .env.example .env     (and change the password)
+#   docker compose up -d --wait db
+#   export HUSHBRAIN_DSN="postgresql://hushbrain:<password>@127.0.0.1:54329/hushbrain"
+#   uv run hushbrain init-db
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: hushbrain
+      POSTGRES_PASSWORD: ${HUSHBRAIN_DB_PASSWORD:?set HUSHBRAIN_DB_PASSWORD, see .env.example}
+      POSTGRES_DB: hushbrain
+    ports:
+      - "127.0.0.1:${HUSHBRAIN_DB_PORT:-54329}:5432"
+    volumes:
+      - hushbrain-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hushbrain -d hushbrain"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  hushbrain-data:

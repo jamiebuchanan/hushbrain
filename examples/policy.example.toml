@@ -1,0 +1,38 @@
+# hushbrain policy. Every value below is invented. Copy this file, keep the copy local
+# (policy.toml is git-ignored in this repo) and put your real names and projects in the copy.
+#
+# `hushbrain check-policy examples/policy.example.toml` validates it and prints counts only.
+version = 1
+
+[tiers]
+# Least to most restricted. The first must be "normal". Add your own, for example "finance".
+levels = ["normal", "personal", "legal"]
+
+# What every read tool returns unless the caller passes include_sensitive.
+default_visible = ["normal"]
+
+# What a note with no label, or a label not in `levels`, is stored as. It must not be
+# "normal" and must not be in default_visible, so forgetting a label can only hide a note.
+default_for_missing = "personal"
+
+# Tier floors. A note filed under one of these projects is stored at least this restricted,
+# whatever its own label says. Labels can be raised by a floor, never lowered.
+[projects]
+personal = ["family-holiday"]
+legal = ["orchard-lane-dispute"]
+
+# The egress gate: rules for anything that leaves the machine (an export bundle, a replica,
+# a post). Default deny. Not used by the read tools.
+[export]
+allow_tiers = ["normal"]
+allow_types = ["pillar", "decision", "concept", "question", "playbook", "fact", "source"]
+deny_types = ["contact"]
+deny_projects = ["internal-payroll"]
+scan_fields = ["id", "title", "summary", "body"]
+
+# Matched case-insensitively, and flexibly across spaces, hyphens and underscores.
+blocklist_terms = ["wren and pike", "hollis park staff rota"]
+# Matched only as whole words, for short terms that would otherwise match inside other words.
+blocklist_word_terms = ["salary", "payroll"]
+# Raw regular expressions, for identifiers.
+blocklist_regex = ['\bINV-\d{6}\b']

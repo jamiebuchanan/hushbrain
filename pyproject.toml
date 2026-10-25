@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hushbrain"
+version = "0.1.0"
+description = "An MCP memory server over a typed-note vault that keeps personal and legal notes out of every default read."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "Jamie Buchanan" }]
+dependencies = [
+    "mcp>=1.9.4,<2",
+    "psycopg[binary]>=3.2.3",
+    "httpx>=0.28.1",
+    "pydantic>=2.8",
+    "watchdog>=6.0.0",
+    "python-frontmatter>=1.1.0",
+]
+
+[project.scripts]
+hushbrain = "hushbrain.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8.3"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hushbrain"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = ["db: needs Postgres with pgvector (set HUSHBRAIN_TEST_DSN, or run scripts/test.sh)"]
