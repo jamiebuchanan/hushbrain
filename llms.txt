@@ -1,0 +1,10 @@
+# hushbrain
+
+> An MCP memory server over a vault of typed markdown notes, where personal and legal notes stay out of every read unless the caller explicitly opts in.
+
+## Docs
+
+- [README](https://raw.githubusercontent.com/jamiebuchanan/hushbrain/main/README.md): the idea, quick start, policy, configuration, limits and tests
+- [Agent install guide](https://raw.githubusercontent.com/jamiebuchanan/hushbrain/main/AGENT-INSTALL.md): steps for a coding agent to install and validate hushbrain
+- [Roadmap](https://raw.githubusercontent.com/jamiebuchanan/hushbrain/main/ROADMAP.md): what is not done yet
+- [Sample vault](https://raw.githubusercontent.com/jamiebuchanan/hushbrain/main/sample-vault/README.md): the invented notes used by the tests and the demo
