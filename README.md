@@ -29,6 +29,8 @@ Servers in this space usually partition memory by user, project or agent. As far
 
 ## Quick start
 
+Let a coding agent install it: `curl -fsSL https://raw.githubusercontent.com/jamiebuchanan/hushbrain/main/AGENT-INSTALL.md | claude`
+
 You need Docker and [uv](https://docs.astral.sh/uv/). The code declares Python 3.11 or later and has been run on 3.12 only. This path uses the built-in `hash` embedder so it works without Ollama. It matches words, it does not understand meaning, so use it to see the privacy behaviour and swap in Ollama (below) for real recall.
 
 ```bash
